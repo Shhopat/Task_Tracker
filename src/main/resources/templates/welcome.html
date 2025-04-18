@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome</title>
+</head>
+<body>
+<h1>Welcome everyone!</h1>
+This is Task_Tracker and, it needs to send tasks
+<br/>
+<hr/>
+
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="EXIT"/>
+</form>
+</body>
+</html>
