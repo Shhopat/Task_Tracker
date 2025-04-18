@@ -5,7 +5,8 @@
     <title>login</title>
 </head>
 <body>
-<form method="POST" th:action="@{/processing}">
+<h3>Аутентификация:</h3>
+<form method="POST" th:action="@{/processing}" name="f">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
     <label for="username">Введите логин:</label>
@@ -17,10 +18,13 @@
     <hr/>
     <input type="submit" value="Login!">
 </form>
-
 <div th:if="${param.error}" style="color:red">
     Неправильный логин или пароль
 </div>
+<form method="GET" th:action="@{/auth/registration}">
+    <input type="submit" value="Registration">
+</form>
+
 
 </body>
 </html>

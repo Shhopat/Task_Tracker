@@ -1,6 +1,8 @@
 package com.example.task_tracker.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "person")
@@ -20,9 +22,13 @@ public class Person {
     private int id;
 
     @Column(name = "username", nullable = false, unique = false, length = 40)
+    @Size(min = 3, max = 40, message = "username should be between 3 - 40 character")
+    @NotEmpty(message = "username should not be empty")
     private String username;
 
     @Column(name = "password", nullable = false, unique = false, length = 100)
+    @Size(min = 8, max = 20, message = "password should be between 8 - 20 numbers")
+    @NotEmpty(message = "password should not be empty")
     private String password;
 
     @Column(name = "role", nullable = false, unique = false, length = 100)
