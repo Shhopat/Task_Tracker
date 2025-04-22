@@ -22,17 +22,21 @@ public class Person {
     private int id;
 
     @Column(name = "username", nullable = false, unique = false, length = 40)
-    @Size(min = 3, max = 40, message = "username should be between 3 - 40 character")
+    @Size(min = 3, max = 40, message = "username should be between 3 - 40 characters")
     @NotEmpty(message = "username should not be empty")
     private String username;
 
     @Column(name = "password", nullable = false, unique = false, length = 100)
-    @Size(min = 8, max = 20, message = "password should be between 8 - 20 numbers")
+    @Size(min = 8,message = "password should be min 8")
     @NotEmpty(message = "password should not be empty")
     private String password;
 
     @Column(name = "role", nullable = false, unique = false, length = 100)
     private String role;
+
+    @Column(name = "position", nullable = false, length = 40)
+    @NotEmpty(message = "should not be empty")
+    private String position;
 
     public int getId() {
         return id;
@@ -66,6 +70,15 @@ public class Person {
         this.role = role;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+
     @Override
     public String toString() {
         return "Person{" +
@@ -73,6 +86,7 @@ public class Person {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", position='" + position + '\'' +
                 '}';
     }
 }

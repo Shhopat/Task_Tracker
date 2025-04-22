@@ -15,6 +15,11 @@
     <input type="password" th:field="*{password}" id="password">
     <div th:if="${#fields.hasErrors('password')}" style="color:red" th:errors="*{password}"></div>
     <br/>
+    <label for="position">Выберите позицию:</label>
+    <select th:field="*{position}" id="position">
+        <option th:each="x: ${profession}" th:value="${x}" th:text="${x}"></option>
+    </select>
+    <br/>
     <hr/>
     <input type="submit" value="Create!">
 

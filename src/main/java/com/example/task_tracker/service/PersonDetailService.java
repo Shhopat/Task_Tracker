@@ -9,11 +9,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PersonDetailService implements UserDetailsService {
     private final PersonRepositories personRepositories;
+    private final List<String> professionsList = Arrays.asList("backend", "frontend", "tester");
 
     @Autowired
     public PersonDetailService(PersonRepositories personRepositories) {
@@ -28,5 +31,9 @@ public class PersonDetailService implements UserDetailsService {
         }
 
         return new PersonDetails(optionalPerson.get());
+    }
+
+    public List<String> getProfessionsList() {
+        return professionsList;
     }
 }

@@ -23,7 +23,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/task_tracker/welcome", true)
                         .failureUrl("/auth/login?error"))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/registration").permitAll()
+                        .requestMatchers("/auth/login", "/auth/registration", "/auth/save").permitAll()
                         .requestMatchers("/auth/admin").hasRole("ADMIN")
                         .anyRequest().hasAnyRole("ADMIN", "USER"))
                 .logout(log -> log
