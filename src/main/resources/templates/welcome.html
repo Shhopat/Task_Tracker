@@ -9,9 +9,6 @@
 This is Task_Tracker and, it needs to send tasks
 <br/>
 <hr/>
-
-<form method="POST" th:action="@{/logout}">
-    <input type="submit" value="EXIT"/>
-</form>
+<a th:href="@{/task_tracker/user/{id}(id=${person.id})}">Мой кабинет</a>
 </body>
 </html>

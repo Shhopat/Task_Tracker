@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "person")
 public class Person {
@@ -11,10 +13,10 @@ public class Person {
     public Person() {
     }
 
-    public Person(String username, String password, String role) {
+    public Person(String username, String password, String position) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.position = position;
     }
 
     @Id
@@ -27,7 +29,7 @@ public class Person {
     private String username;
 
     @Column(name = "password", nullable = false, unique = false, length = 100)
-    @Size(min = 8,message = "password should be min 8")
+    @Size(min = 8, message = "password should be min 8")
     @NotEmpty(message = "password should not be empty")
     private String password;
 
@@ -37,6 +39,17 @@ public class Person {
     @Column(name = "position", nullable = false, length = 40)
     @NotEmpty(message = "should not be empty")
     private String position;
+
+    @Column(name = "date", nullable = false)
+    private LocalDateTime date;
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;

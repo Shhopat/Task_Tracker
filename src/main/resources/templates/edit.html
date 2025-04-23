@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/task_tracker/{id}/edit(id=${person.id})}" th:object="${person}">
+    <label for="username">Введите логин или имя: </label>
+    <input type="text" th:field="*{username}" id="username">
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red"></div>
+    <br/>
+    <label for="password">Введите пароль (обязательно поле):</label>
+    <input type="password" th:field="*{password}" id="password">
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></div>
+    <br/>
+    <label for="position">Выберите позицию:</label>
+    <select th:field="*{position}" id="position">
+        <option th:each="x : ${profession}" th:value="${x}" th:text="${x}"></option>
+    </select>
+    <br/>
+    <hr/>
+    <input type="submit" value="Edit!">
+</form>
+
+
+</body>
+</html>

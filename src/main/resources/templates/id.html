@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>id</title>
+</head>
+<body>
+<p th:text="${'id: ' + person.id + '. ' + person.username}"></p>
+<p th:text="${'Позиция: ' + person.position}"></p>
+<p th:text="${'Дата регистрации: ' + person.date}"></p>
+<hr/>
+<form method="GET" th:action="@{/task_tracker/{id}/edit(id=${person.id})}">
+    <input type="submit" value="Edit">
+</form>
+
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="EXIT"/>
+</form>
+
+</body>
+</html>
