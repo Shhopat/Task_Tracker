@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -40,8 +41,44 @@ public class Person {
     @NotEmpty(message = "should not be empty")
     private String position;
 
+    @Column(name = "countTasksReady", nullable = false)
+    private int countTasksReady;
+
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
+
+    @Column(name = "countTasks", nullable = true)
+    private int countTasks;
+
+    public int getCountTasks() {
+        return taskList.size();
+    }
+
+    public void setCountTasks(int countTasks) {
+        this.countTasks = countTasks;
+    }
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<Task> taskList;
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<TaskReady> taskReadyList;
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public List<TaskReady> getTaskReadyList() {
+        return taskReadyList;
+    }
+
+    public void setTaskReadyList(List<TaskReady> taskReadyList) {
+        this.taskReadyList = taskReadyList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
 
     public LocalDateTime getDate() {
         return date;
@@ -91,6 +128,13 @@ public class Person {
         this.position = position;
     }
 
+    public int getCountTasksReady() {
+        return taskReadyList.size();
+    }
+
+    public void setCountTasksReady(int countTasksReady) {
+        this.countTasksReady = countTasksReady;
+    }
 
     @Override
     public String toString() {

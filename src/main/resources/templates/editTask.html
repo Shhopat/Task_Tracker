@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>editTask</title>
+</head>
+<body>
+Редактирование задачи:
+<p th:text="${'id:' + task.id + ' ' + task.name }"></p>
+<form th:method="PATCH" th:action="@{/task_tracker/user/{userId}/task/{taskId}(taskId=${task.id}, userId=${person.id})}"
+      th:object="${task}">
+    <label for="name">Введите новый текст:</label>
+    <input type="text" th:field="*{name}" id="name">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red"></div>
+    <br/>
+    <hr/>
+    <input type="submit" value="Изменить!">
+</form>
+
+
+</body>
+</html>

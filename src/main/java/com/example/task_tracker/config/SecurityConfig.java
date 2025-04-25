@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .failureUrl("/auth/login?error"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/auth/registration", "/auth/save").permitAll()
-                        .requestMatchers("/auth/admin").hasRole("ADMIN")
+                        .requestMatchers("/auth/admin","/task_tracker/users").hasRole("ADMIN")
                         .anyRequest().hasAnyRole("ADMIN", "USER"))
                 .logout(log -> log
                         .logoutUrl("/logout")

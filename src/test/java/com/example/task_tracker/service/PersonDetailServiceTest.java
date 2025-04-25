@@ -2,7 +2,6 @@ package com.example.task_tracker.service;
 
 import com.example.task_tracker.model.Person;
 import com.example.task_tracker.repositories.PersonRepositories;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -57,7 +55,7 @@ public class PersonDetailServiceTest {
     }
 
     @Test
-    void shouldByUsername() {
+    void shouldGetByUsername() {
         Mockito.when(personRepositories.findByUsername(person.getUsername())).thenReturn(Optional.of(person));
         Person person1 = personDetailService.findByUsername(person.getUsername());
 

@@ -10,5 +10,8 @@ This is Task_Tracker and, it needs to send tasks
 <br/>
 <hr/>
 <a th:href="@{/task_tracker/user/{id}(id=${person.id})}">Мой кабинет</a>
+<div th:if="${person.role == 'ROLE_ADMIN'}">
+    <a th:href="@{/task_tracker/users}">Список всех пользователей</a>
+</div>
 </body>
 </html>

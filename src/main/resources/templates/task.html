@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>add_task</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/task_tracker/user/{id}/add/task(id=${personId})}" th:object="${task}">
+    <label for="name">Введите текст задачи:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red"></div>
+    <br/>
+    <hr/>
+    <input type="submit" value="Добавить задачу!">
+
+</form>
+
+</body>
+</html>

@@ -5,10 +5,46 @@
     <title>id</title>
 </head>
 <body>
+
+<p th:text="${'Уровень доступа: ' + person.role}"></p>
 <p th:text="${'id: ' + person.id + '. ' + person.username}"></p>
 <p th:text="${'Позиция: ' + person.position}"></p>
 <p th:text="${'Дата регистрации: ' + person.date}"></p>
-<hr/>
+<div th:if="${person.role != 'ROLE_ADMIN'}">
+    <a th:href="@{/task_tracker/user/{id}/tasks/ready(id=${person.id})}">Выполненные задачи</a>
+    <h5>Список задач:</h5>
+    <div th:each="task :${person.taskList}">
+        <p th:text="${'id:' + task.id + ' ' + task.name}"></p>
+        <form th:method="GET"
+              th:action="@{/task_tracker/task/{taskId}/user/{userId}(taskId=${task.id}, userId=${person.id})}">
+            <input type="submit" value="готово">
+        </form>
+        <form th:method="GET"
+              th:action="@{/task_tracker/user/{userId}/task/{taskId}(taskId=${task.id}, userId=${person.id})}">
+            <input type="submit" value="изменить">
+        </form>
+        <form th:method="PUT"
+              th:action="@{/task_tracker/user/{userId}/task/{taskId}(taskId=${task.id}, userId=${person.id})}">
+            <input type="submit" value="удалить" style="color:red">
+        </form>
+
+        <div th:if="${person.role != 'ROLE_ADMIN'}">
+            <hr/>
+        </div>
+    </div>
+
+</div>
+
+<br/>
+<div th:if="${person.countTasks == 0 and person.role != 'ROLE_ADMIN'}">
+    <hr/>
+</div>
+
+<div th:if="${person.role == 'ROLE_ADMIN'}">
+    <a th:href="@{/task_tracker/admin}">Назначить задачи</a>
+    <hr/>
+</div>
+
 <form method="GET" th:action="@{/task_tracker/{id}/edit(id=${person.id})}">
     <input type="submit" value="Edit">
 </form>

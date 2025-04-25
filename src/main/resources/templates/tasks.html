@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>tasks</title>
+</head>
+<body>
+<p th:text="${'Пользователь: ' + person.username + ' id:' + person.id }"></p>
+<h5>Выполненные задачи:</h5>
+<div th:each="task : ${tasks}">
+    <p th:text="${'id:' + task.id + ' ' + task.name}"></p>
+</div>
+<hr>
+<div th:if="${admin.role == 'ROLE_ADMIN'}">
+    <form th:method="GET" th:action="@{/task_tracker/user/{id}/task(id=${person.id})}">
+        <input type="submit" value="add task">
+    </form>
+</div>
+
+
+
+</body>
+</html>

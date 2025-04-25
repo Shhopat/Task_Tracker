@@ -53,5 +53,10 @@ public class PersonDetailService implements UserDetailsService {
         return personRepositories.findByUsername(username).orElse(null);
     }
 
+    @Transactional
+    public List<Person> findAll() {
+        return personRepositories.findAll();
+    }
+
 
 }
